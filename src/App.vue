@@ -4,6 +4,7 @@
     <Balance />
     <IncomeExpenses />
     <TransactionList />
+    <AddTransactions />
   </div>
 </template>
 
@@ -12,4 +13,5 @@ import Header from './components/header.vue'
 import Balance from './components/balance.vue'
 import IncomeExpenses from './components/income-expenses.vue'
 import TransactionList from './components/transaction-list.vue'
+import AddTransactions from './components/add-transactions.vue'
 </script>

@@ -1,7 +1,7 @@
 <template>
   <h3>Histórico de Transações</h3>
   <ul id="list" class="list">
-    <li v-for="transaction in transactions">
+    <li v-for="transaction in transactions" v-bind:key="transaction.id">
       {{ transaction.text }} <span>{{ transaction.amount }}</span>
       <button class="delete-btn">x</button>
     </li>

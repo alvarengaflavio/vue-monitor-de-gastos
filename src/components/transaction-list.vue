@@ -2,7 +2,7 @@
   <h3>Histórico de Transações</h3>
   <ul id="list" class="list">
     <li
-      v-for="(transaction, index) in transactions"
+      v-for="(transaction, index) in props.transactions"
       v-bind:key="index"
       :class="transaction.amount > 0 ? 'plus' : 'minus'"
     >
@@ -13,10 +13,13 @@
 </template>
 
 <script setup lang="ts">
-const transactions = [
-  { id: 1, text: 'Flower', amount: -20 },
-  { id: 2, text: 'Salary', amount: 300 },
-  { id: 3, text: 'Book', amount: -10 },
-  { id: 4, text: 'Camera', amount: 150 },
-]
+import type { TransactionList } from '../types'
+import { PropType } from 'vue'
+
+const props = defineProps({
+  transactions: {
+    type: Array as PropType<TransactionList>,
+    required: true,
+  },
+})
 </script>

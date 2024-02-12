@@ -1,11 +1,18 @@
 <template>
   <h3>Histórico de Transações</h3>
   <ul id="list" class="list">
-    <li class="minus">
-      Dinheiro <span>-R$400</span><button class="delete-btn">x</button>
-    </li>
-    <li class="plus">
-      Pagamento <span>R$800</span><button class="delete-btn">x</button>
+    <li v-for="transaction in transactions">
+      {{ transaction.text }} <span>{{ transaction.amount }}</span>
+      <button class="delete-btn">x</button>
     </li>
   </ul>
 </template>
+
+<script setup lang="ts">
+const transactions = [
+  { id: 1, text: 'Flower', amount: -20 },
+  { id: 2, text: 'Salary', amount: 300 },
+  { id: 3, text: 'Book', amount: -10 },
+  { id: 4, text: 'Camera', amount: 150 },
+]
+</script>

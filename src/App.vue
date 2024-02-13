@@ -18,26 +18,30 @@ import Header from './components/header.vue'
 import IncomeExpenses from './components/income-expenses.vue'
 import TransactionList from './components/transaction-list.vue'
 
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useToast } from 'vue-toastification'
 import { Transaction } from './utils/types'
 
 const toast = useToast()
 
-const transactions = ref([
-  { id: '1', text: 'Flores', amount: -20 },
-  { id: '2', text: 'Salário', amount: 300 },
-  { id: '3', text: 'Livro', amount: -10 },
-  { id: '4', text: 'Câmera', amount: 150 },
-])
+const transactions = ref<Transaction[]>(new Array<Transaction>())
+
+onMounted(() => {
+  const data = localStorage.getItem('transactions')
+  if (data) transactions.value = JSON.parse(data)
+})
 
 const total = computed(() => {
+  if (transactions.value.length === 0) return '0.00'
+
   return transactions.value
     .reduce((acc, item) => (acc += item.amount), 0)
     .toFixed(2)
 })
 
 const income = computed(() => {
+  if (transactions.value.length === 0) return '0.00'
+
   return transactions.value
     .filter((item) => item.amount > 0)
     .reduce((acc, item) => (acc += item.amount), 0)
@@ -52,7 +56,12 @@ const expenses = computed(() => {
 })
 
 const handleAddTransaction = (transaction: Transaction) => {
-  transactions.value.push(transaction)
+  if (transactions.value.length === 0) {
+    transactions.value = [transaction]
+  } else {
+    transactions.value.push(transaction)
+  }
+
   toast.success('Transação adicionada com sucesso')
 }
 

@@ -29,17 +29,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useToast } from 'vue-toastification'
+import { uid } from '../utils/helper-functions'
 
 const text = ref('')
 const amount = ref('')
 const emit = defineEmits(['add-transaction'])
 const toast = useToast()
-
-const uid = () =>
-  String(Date.now().toString(32) + Math.random().toString(16)).replace(
-    /\./g,
-    ''
-  )
 
 const onSubmit = () => {
   try {
@@ -53,7 +48,7 @@ const onSubmit = () => {
 
     const transactionData = {
       id: uid(),
-      text: text.value,
+      text: text.value.trim(),
       amount: parseFloat(amount.value),
     }
 

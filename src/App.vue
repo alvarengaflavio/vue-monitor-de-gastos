@@ -16,7 +16,7 @@ import TransactionList from './components/transaction-list.vue'
 import AddTransactions from './components/add-transactions.vue'
 
 import { ref, computed } from 'vue'
-import { Transaction } from './types'
+import { Transaction } from './utils/types'
 
 const transactions = ref([
   { id: 1, text: 'Flores', amount: -20 },
@@ -50,4 +50,3 @@ const handleAddTransaction = (transaction: Transaction) => {
   transactions.value.push(transaction)
 }
 </script>
-./utils/types

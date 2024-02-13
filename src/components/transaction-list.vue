@@ -7,7 +7,9 @@
       :class="transaction.amount > 0 ? 'plus' : 'minus'"
     >
       {{ transaction.text }} <span>R$ {{ transaction.amount }}</span>
-      <button class="delete-btn">x</button>
+      <button @click="handleDelete(transaction.id)" class="delete-btn">
+        x
+      </button>
     </li>
   </ul>
 </template>
@@ -22,4 +24,10 @@ const props = defineProps({
     required: true,
   },
 })
+
+const emit = defineEmits(['delete-transaction'])
+
+const handleDelete = (id: string) => {
+  emit('delete-transaction', id)
+}
 </script>

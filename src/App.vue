@@ -32,7 +32,6 @@ const total = computed(() => {
     .toFixed(2)
 })
 
-// get incomes
 const income = computed(() => {
   return transactions.value
     .filter((item) => item.amount > 0)
@@ -40,7 +39,6 @@ const income = computed(() => {
     .toFixed(2)
 })
 
-// get expenses
 const expenses = computed(() => {
   return transactions.value
     .filter((item) => item.amount < 0)

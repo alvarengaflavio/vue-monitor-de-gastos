@@ -9,14 +9,17 @@
 </template>
 
 <script setup lang="ts">
-import Header from './components/header.vue'
+import AddTransactions from './components/add-transactions.vue'
 import Balance from './components/balance.vue'
+import Header from './components/header.vue'
 import IncomeExpenses from './components/income-expenses.vue'
 import TransactionList from './components/transaction-list.vue'
-import AddTransactions from './components/add-transactions.vue'
 
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
+import { useToast } from 'vue-toastification'
 import { Transaction } from './utils/types'
+
+const toast = useToast()
 
 const transactions = ref([
   { id: 1, text: 'Flores', amount: -20 },
@@ -47,5 +50,6 @@ const expenses = computed(() => {
 
 const handleAddTransaction = (transaction: Transaction) => {
   transactions.value.push(transaction)
+  toast.success('Transação adicionada com sucesso')
 }
 </script>

@@ -21,6 +21,7 @@ import TransactionList from './components/transaction-list.vue'
 import { computed, onMounted, ref } from 'vue'
 import { useToast } from 'vue-toastification'
 import { Transaction } from './utils/types'
+import { saveToLocalStorage } from './utils/helper-functions'
 
 const toast = useToast()
 
@@ -62,7 +63,7 @@ const handleAddTransaction = (transaction: Transaction) => {
     transactions.value.push(transaction)
   }
 
-  saveToLocalStorage()
+  saveToLocalStorage(transactions)
   toast.success('Transação adicionada com sucesso')
 }
 
@@ -71,11 +72,7 @@ const handleDeleteTransaction = (id: string) => {
     (transaction) => transaction.id !== id
   )
 
-  saveToLocalStorage()
+  saveToLocalStorage(transactions)
   toast.info('Transação removida com sucesso')
-}
-
-const saveToLocalStorage = () => {
-  localStorage.setItem('transactions', JSON.stringify(transactions.value))
 }
 </script>

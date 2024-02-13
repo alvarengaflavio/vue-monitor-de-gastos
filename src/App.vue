@@ -22,10 +22,10 @@ import { Transaction } from './utils/types'
 const toast = useToast()
 
 const transactions = ref([
-  { id: 1, text: 'Flores', amount: -20 },
-  { id: 2, text: 'Salário', amount: 300 },
-  { id: 3, text: 'Livro', amount: -10 },
-  { id: 4, text: 'Câmera', amount: 150 },
+  { id: '1', text: 'Flores', amount: -20 },
+  { id: '2', text: 'Salário', amount: 300 },
+  { id: '3', text: 'Livro', amount: -10 },
+  { id: '4', text: 'Câmera', amount: 150 },
 ])
 
 const total = computed(() => {

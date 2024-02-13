@@ -69,6 +69,7 @@ const handleDeleteTransaction = (id: string) => {
   transactions.value = transactions.value.filter(
     (transaction) => transaction.id !== id
   )
+
   toast.info('Transação removida com sucesso')
 }
 </script>

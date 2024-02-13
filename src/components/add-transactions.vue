@@ -16,7 +16,7 @@
         (negativo - despesa, positivo - renda)</label
       >
       <input
-        type="number"
+        type="text"
         id="amount"
         v-model="amount"
         placeholder="Insira o valor"
@@ -28,15 +28,32 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useToast } from 'vue-toastification'
 
 const text = ref('')
 const amount = ref('')
+const toast = useToast()
 
 const onSubmit = () => {
-  if (text.value.trim() === '' || amount.value.trim() === '') {
-    alert('Por favor, adicione uma descrição e valor')
-  } else {
+  try {
+    if (text.value.trim() === '' || amount.value.trim() === '') {
+      throw new Error('Por favor, adicione uma descrição e valor')
+    }
+
+    if (isNaN(parseFloat(amount.value))) {
+      throw new Error('Por favor, insira um valor numérico')
+    }
+
     console.log(text.value, amount.value)
+
+    text.value = ''
+    amount.value = ''
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      toast.error(error.message || 'Erro ao adicionar transação')
+    } else {
+      toast.error('Erro ao adicionar transação')
+    }
   }
 }
 </script>

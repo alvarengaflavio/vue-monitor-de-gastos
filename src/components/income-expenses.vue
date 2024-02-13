@@ -6,7 +6,7 @@
     </div>
     <div>
       <h4>Despesas</h4>
-      <p id="money-minus" class="money minus">R$ {{ props.expense }}</p>
+      <p id="money-minus" class="money minus">R$ {{ props.expenses }}</p>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  expense: {
+  expenses: {
     type: String,
     required: true,
   },

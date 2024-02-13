@@ -18,7 +18,7 @@ import Header from './components/header.vue'
 import IncomeExpenses from './components/income-expenses.vue'
 import TransactionList from './components/transaction-list.vue'
 
-import { computed, ref, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useToast } from 'vue-toastification'
 import { Transaction } from './utils/types'
 

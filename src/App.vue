@@ -25,7 +25,6 @@ const transactions = ref([
   { id: 4, text: 'Câmera', amount: 150 },
 ])
 
-// Get total
 const total = computed(() => {
   return transactions.value
     .reduce((acc, item) => (acc += item.amount), 0)

@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import type { TransactionList } from '../types'
+import type { TransactionList } from '../utils/types'
 import { PropType } from 'vue'
 
 const props = defineProps({
@@ -23,4 +23,3 @@ const props = defineProps({
   },
 })
 </script>
-../utils/types

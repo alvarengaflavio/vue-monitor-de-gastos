@@ -4,7 +4,7 @@
     <Balance :total="total" />
     <IncomeExpenses :income="income" :expenses="expenses" />
     <TransactionList :transactions="transactions" />
-    <AddTransactions />
+    <AddTransactions @add-transaction="handleAddTransaction" />
   </div>
 </template>
 
@@ -46,4 +46,8 @@ const expenses = computed(() => {
     .reduce((acc, item) => (acc += item.amount), 0)
     .toFixed(2)
 })
+
+const handleAddTransaction = (transaction: any) => {
+  transactions.value.push(transaction)
+}
 </script>

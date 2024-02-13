@@ -32,7 +32,14 @@ import { useToast } from 'vue-toastification'
 
 const text = ref('')
 const amount = ref('')
+const emit = defineEmits(['add-transaction'])
 const toast = useToast()
+
+const uid = () =>
+  String(Date.now().toString(32) + Math.random().toString(16)).replace(
+    /\./g,
+    ''
+  )
 
 const onSubmit = () => {
   try {
@@ -44,7 +51,13 @@ const onSubmit = () => {
       throw new Error('Por favor, insira um valor numérico')
     }
 
-    console.log(text.value, amount.value)
+    const transactionData = {
+      id: uid(),
+      text: text.value,
+      amount: parseFloat(amount.value),
+    }
+
+    emit('add-transaction', transactionData)
 
     text.value = ''
     amount.value = ''
